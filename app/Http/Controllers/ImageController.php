@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
 class ImageController extends Controller
 {
 //    public function processImage(Request $request)
@@ -69,10 +70,17 @@ class ImageController extends Controller
     public function processImage(Request $request)
     {
  
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'image' => 'required|image|mimes:jpg,png,jpeg|max:2048',
         ]);
-
+    
+        // Agar validation fail hoti hai toh error response bhejein
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()->first(),
+                'errors' => $validator->errors()
+            ], 422);
+        }
         $image = $request->file('image');
         $imageName = time() . '.' . $image->extension();
 
