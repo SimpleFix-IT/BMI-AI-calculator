@@ -9,64 +9,6 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 class ImageController extends Controller
 {
-//    public function processImage(Request $request)
-//     {
-//         $request->validate([
-//             'image' => 'required|image|mimes:jpg,png,jpeg|max:2048',
-//         ]);
-        
-//         $image = $request->file('image');
-//         $imageName = time() . '.' . $image->extension();
-        
-//         // 🔹 Image ko public directory me store karein
-//         $image->move(public_path('user/image'), $imageName);
-        
-//         // 🔹 Python script ke liye full image path generate karein
-//         $imagePath = public_path('user/image/' . $imageName);
-//         \Log::info("Stored Image Path: " . $imagePath);
-        
-//         $pythonPath = "C:/Users/pc/myenv/Scripts/python.exe"; // ✅ Virtualenv ka Python
-//         $scriptPath = "C:/Users/pc/Desktop/bmi-calculator/bmi-backend-python/bmi-backend/scripts/extract_height_weight.py";
-        
-//         $command = escapeshellcmd("\"$pythonPath\" \"$scriptPath\" \"$imagePath\"");
-//         $output = shell_exec($command);
-        
-//         \Log::info("Python script raw output: " . $output);
-        
-//         // 🔹 Multi-line output ka sirf last line parse karo
-//         $lines = explode("\n", trim($output));
-//         $jsonString = end($lines); // ✅ Sirf last JSON line lo
-        
-//         $jsonOutput = json_decode($jsonString, true);
-        
-//         if ($jsonOutput === null) {
-//             return response()->json([
-//                 'error' => 'Invalid JSON response from Python script',
-//                 'raw_output' => $output // Debugging ke liye pura output bhejo
-//             ], 500);
-//         }
-
-//         // ✅ Check if height and weight exist
-//         if (!isset($jsonOutput['height']) || !isset($jsonOutput['weight'])) {
-//             return response()->json([
-//                 'error' => 'Missing height or weight in response',
-//                 'raw_output' => $jsonOutput
-//             ], 500);
-//         }
-
-//         // ✅ BMI Calculation
-//         $height_m = $jsonOutput['height'] / 100; // cm to meters
-//         $weight_kg = $jsonOutput['weight']; // kg
-//         $bmi = round($weight_kg / ($height_m * $height_m), 2); // ✅ BMI Formula
-    
-//         // ✅ Final Response with BMI
-//         return response()->json([
-//             'height' => $jsonOutput['height'],
-//             'weight' => $jsonOutput['weight'],
-//             'bmi' => $bmi
-//         ]);
-        
-//     }
     public function processImage(Request $request)
     {
  
@@ -88,12 +30,6 @@ class ImageController extends Controller
         $image->move(public_path('user/image'), $imageName);
         $imagePath = public_path('user/image/' . $imageName);
 
-        // \Log::info("Stored Image Path: " . $imagePath);
-
-        // ✅ Python Script Call
-        // $pythonPath = "C:/Users/pc/myenv/Scripts/python.exe";
-        // $scriptPath = "C:/Users/pc/Desktop/bmi-calculator/bmi-backend/scripts/extract_height_weight.py";
-        // ✅ Dynamic Python Path from .env (fallback to 'python' if not set)
         $pythonPath = env('PYTHON_PATH', 'python'); 
 
         // ✅ Dynamic Script Path
@@ -102,13 +38,14 @@ class ImageController extends Controller
         $command = escapeshellcmd("\"$pythonPath\" \"$scriptPath\" \"$imagePath\"");
         $output = shell_exec($command);
 
-        // \Log::info("Python script raw output: " . $output);
+        \Log::info("Python script raw output: " . $output);
 
         // 🔹 Python output check karo
         $lines = explode("\n", trim($output));
         $jsonString = end($lines);
         $jsonOutput = json_decode($jsonString, true);
 
+        // \Log::info("Python script raw jsonOutput: " . $jsonOutput);
         if ($jsonOutput === null) {
             return response()->json([
                 'error' => 'Invalid JSON response from Python script',

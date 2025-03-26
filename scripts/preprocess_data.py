@@ -11,10 +11,10 @@ import sys
 import pandas as pd
 
 image_path = sys.argv[1]
-dataset_path = sys.argv[2]  # ✅ Laravel se correct dataset path aa raha hai
+dataset_path = sys.argv[2] 
 
 # 📌 1️⃣ Load Dataset
-df = pd.read_csv(dataset_path)  # ✅ Ab hardcoded path ki zaroorat nahi
+df = pd.read_csv(dataset_path)  
 
 # 📌 2️⃣ Convert Height from Inches to Centimeters (1 inch = 2.54 cm)
 df["Height (cm)"] = df["Height(Inches)"] * 2.54
