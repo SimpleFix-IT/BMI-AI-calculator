@@ -1,66 +1,94 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+BMI Project README
+📝 Introduction
+This project is a BMI Calculator powered by AI, providing users with personalized health insights based on their Body Mass Index (BMI). The application allows users to calculate their BMI, view health recommendations based on their measurements, and interact with an AI chatbot to get health-related advice.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+🌟 Features
+Client-Side Features:
+1.BMI Calculator Section
 
-## About Laravel
+Users can enter their height and weight to calculate their BMI.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Based on the BMI value, users will be categorized into one of the following four categories:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Underweight
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Normal
 
-## Learning Laravel
+Overweight
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Obese
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2.AI Health Guidance
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Users can receive AI-driven health recommendations by submitting their height, weight, age, and gender.
 
-## Laravel Sponsors
+After filling in these details, users can click the Get AI Recommendation button to receive personalized health information.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3.BMI About Section
 
-### Premium Partners
+The About section provides users with detailed information about BMI, including what it is, how it's calculated, and its importance for health.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Backend-Side Features:
+AI Health Recommendation
 
-## Contributing
+When a user requests health recommendations, the backend sends the user's height, weight, age, and gender to the AI system.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+The AI processes the data and returns a response, which is then sent back to the client-side for display.
 
-## Code of Conduct
+Chatbot AI Feature
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Users can interact with a chatbot AI to ask health-related questions.
 
-## Security Vulnerabilities
+The chatbot provides users with health-related information and answers any health queries the user may have.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Tech Stack:
+Frontend: Vue.js
 
-## License
+Backend: Laravel
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+AI: Google Gemini API (for health recommendations)
+
+⚙️ Installation
+📥 Prerequisites:
+vue.js (for frontend)
+
+Laravel (for backend)
+
+
+💻 Steps to Install:
+bash
+Copy
+# Clone the frontend repository
+git clone https://github.com/kamalkant24/BMI-AI-calculator-frontend.git
+
+# Navigate to the project directory
+cd repo-name
+
+# Install backend dependencies
+composer install
+
+# Install frontend dependencies
+npm install
+# Run the frontend development server
+npm run dev
+
+
+
+# Clone the frontend repository
+git clone https://github.com/kamalkant24/BMI-AI-calculator.git
+
+# Navigate to the project directory
+cd repo-name
+
+# Set up environment variables
+cp .env.example .env
+
+# Generate the Laravel application key
+php artisan key:generate
+
+# Run migrations to set up the database
+php artisan migrate
+
+# Start the backend server
+php artisan serve
+
